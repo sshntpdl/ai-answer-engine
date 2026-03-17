@@ -1,10 +1,8 @@
-// src/types/index.ts
-
 export interface Source {
   url: string;
   title: string;
   snippet: string;
-  favicon?: string;
+  favicon?: string | null;
 }
 
 export interface SearchResult {
@@ -25,7 +23,7 @@ export interface FollowUpResult {
 }
 
 export interface StreamChunk {
-  type: 'answer' | 'sources' | 'followups' | 'done' | 'error';
+  type: "answer" | "sources" | "followups" | "done" | "error";
   content?: string;
   sources?: Source[];
   followUps?: string[];
@@ -46,3 +44,41 @@ export interface SearchState {
   followUpResults: FollowUpResult[];
   error: string | null;
 }
+
+type StatusEvent = {
+  type: "status";
+  message: string;
+};
+
+type SourcesEvent = {
+  type: "sources";
+  sources: Source[]; // reuse your existing type
+};
+
+type TokenEvent = {
+  type: "token";
+  content: string;
+};
+
+type FollowUpsEvent = {
+  type: "followups";
+  followUps: string[];
+};
+
+type DoneEvent = {
+  type: "done";
+  searchId: string;
+};
+
+type ErrorEvent = {
+  type: "error";
+  error: string;
+};
+
+export type SearchStreamEvent =
+  | StatusEvent
+  | SourcesEvent
+  | TokenEvent
+  | FollowUpsEvent
+  | DoneEvent
+  | ErrorEvent;

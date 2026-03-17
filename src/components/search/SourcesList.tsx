@@ -1,11 +1,9 @@
-'use client';
-// src/components/search/SourcesList.tsx
-
-import { useState } from 'react';
-import { Globe, ChevronDown } from 'lucide-react';
-import { SourceCard } from './SourceCard';
-import { cn } from '@/lib/utils';
-import type { Source } from '@/types';
+"use client";
+import { useState } from "react";
+import { Globe, ChevronDown } from "lucide-react";
+import { SourceCard } from "./SourceCard";
+import { cn } from "@/lib/utils";
+import type { Source } from "@/types";
 
 interface SourcesListProps {
   sources: Source[];
@@ -52,9 +50,12 @@ export function SourcesList({ sources, isLoading }: SourcesListProps) {
               className="mt-2 flex items-center gap-1 text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
             >
               <ChevronDown
-                className={cn('w-3.5 h-3.5 transition-transform', showAll && 'rotate-180')}
+                className={cn(
+                  "w-3.5 h-3.5 transition-transform",
+                  showAll && "rotate-180",
+                )}
               />
-              {showAll ? 'Show fewer' : `Show ${sources.length - 4} more`}
+              {showAll ? "Show fewer" : `Show ${sources.length - 4} more`}
             </button>
           )}
         </>

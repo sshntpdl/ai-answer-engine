@@ -1,12 +1,11 @@
-'use client';
-// src/components/layout/Sidebar.tsx
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Clock, Trash2, ChevronLeft, ChevronRight, Search } from 'lucide-react';
-import { useHistory } from '@/hooks/useHistory';
-import { formatDate, truncate } from '@/lib/utils';
-import { cn } from '@/lib/utils';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Clock, Trash2, ChevronLeft, ChevronRight, Search } from "lucide-react";
+import { useHistory } from "@/hooks/useHistory";
+import { formatDate, truncate } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
@@ -16,9 +15,9 @@ export function Sidebar() {
   return (
     <aside
       className={cn(
-        'relative flex flex-col h-screen border-r border-zinc-800 bg-zinc-950',
-        'transition-all duration-300 ease-in-out shrink-0',
-        collapsed ? 'w-14' : 'w-64'
+        "relative flex flex-col h-screen border-r border-zinc-800 bg-zinc-950",
+        "transition-all duration-300 ease-in-out shrink-0",
+        collapsed ? "w-14" : "w-64",
       )}
     >
       {/* Toggle */}
@@ -34,25 +33,37 @@ export function Sidebar() {
       </button>
 
       {/* Logo */}
-      <div className={cn('flex items-center gap-2.5 px-4 py-5 border-b border-zinc-800', collapsed && 'justify-center px-0')}>
+      <div
+        className={cn(
+          "flex items-center gap-2.5 px-4 py-5 border-b border-zinc-800",
+          collapsed && "justify-center px-0",
+        )}
+      >
         <div className="w-7 h-7 rounded-lg bg-amber-500 flex items-center justify-center shrink-0">
           <Search className="w-4 h-4 text-zinc-900" />
         </div>
         {!collapsed && (
-          <span className="font-bold text-zinc-100 text-lg tracking-tight">Lumina</span>
+          <span className="font-bold text-zinc-100 text-lg tracking-tight">
+            Lumina
+          </span>
         )}
       </div>
 
       {/* New Search */}
-      <div className={cn('px-3 py-3 border-b border-zinc-800/50', collapsed && 'px-2')}>
+      <div
+        className={cn(
+          "px-3 py-3 border-b border-zinc-800/50",
+          collapsed && "px-2",
+        )}
+      >
         <button
-          onClick={() => router.push('/')}
+          onClick={() => router.push("/")}
           className={cn(
-            'flex items-center gap-2 w-full rounded-xl px-3 py-2.5',
-            'bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 hover:border-amber-500/40',
-            'text-amber-400 hover:text-amber-300 text-sm font-medium',
-            'transition-all duration-200',
-            collapsed && 'justify-center px-0'
+            "flex items-center gap-2 w-full rounded-xl px-3 py-2.5",
+            "bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 hover:border-amber-500/40",
+            "text-amber-400 hover:text-amber-300 text-sm font-medium",
+            "transition-all duration-200",
+            collapsed && "justify-center px-0",
           )}
         >
           <Search className="w-4 h-4 shrink-0" />
@@ -65,14 +76,19 @@ export function Sidebar() {
         {!collapsed && (
           <div className="flex items-center gap-2 px-4 pb-2">
             <Clock className="w-3.5 h-3.5 text-zinc-600" />
-            <span className="text-xs text-zinc-600 font-medium uppercase tracking-wider">History</span>
+            <span className="text-xs text-zinc-600 font-medium uppercase tracking-wider">
+              History
+            </span>
           </div>
         )}
 
         {isLoading ? (
           <div className="space-y-1 px-3">
             {[...Array(5)].map((_, i) => (
-              <div key={i} className="h-8 bg-zinc-900 rounded-lg animate-pulse" />
+              <div
+                key={i}
+                className="h-8 bg-zinc-900 rounded-lg animate-pulse"
+              />
             ))}
           </div>
         ) : history.length === 0 ? (
@@ -102,7 +118,10 @@ export function Sidebar() {
                       </p>
                     </div>
                     <button
-                      onClick={(e) => { e.stopPropagation(); deleteItem(item.id); }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        deleteItem(item.id);
+                      }}
                       className="opacity-0 group-hover:opacity-100 p-1 hover:text-red-400 text-zinc-600 transition-all rounded"
                     >
                       <Trash2 className="w-3 h-3" />

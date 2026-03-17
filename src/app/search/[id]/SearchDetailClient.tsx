@@ -1,14 +1,11 @@
-'use client';
-// src/app/search/[id]/SearchDetailClient.tsx
-
-import { useState } from 'react';
-import { SearchBar } from '@/components/search/SearchBar';
-import { SourcesList } from '@/components/search/SourcesList';
-import { AnswerPanel } from '@/components/search/AnswerPanel';
-import { FollowUpSection } from '@/components/search/FollowUpSection';
-import type { SearchResult, FollowUpResult } from '@/types';
-import { useRouter } from 'next/navigation';
-import { useSearch } from '@/hooks/useSearch';
+"use client";
+import { useState } from "react";
+import { SearchBar } from "@/components/search/SearchBar";
+import { SourcesList } from "@/components/search/SourcesList";
+import { AnswerPanel } from "@/components/search/AnswerPanel";
+import { FollowUpSection } from "@/components/search/FollowUpSection";
+import type { SearchResult, FollowUpResult } from "@/types";
+import { useSearch } from "@/hooks/useSearch";
 
 interface Props {
   search: SearchResult;
@@ -16,13 +13,14 @@ interface Props {
 }
 
 export function SearchDetailClient({ search, savedFollowUps }: Props) {
-  const [followUpResults, setFollowUpResults] = useState<FollowUpResult[]>(savedFollowUps);
+  const [followUpResults, setFollowUpResults] =
+    useState<FollowUpResult[]>(savedFollowUps);
   const { search: newSearch, isLoading } = useSearch();
 
   const handleFollowUp = async (question: string) => {
-    const res = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ searchId: search.id, question }),
     });
     if (res.ok) {
@@ -43,12 +41,15 @@ export function SearchDetailClient({ search, savedFollowUps }: Props) {
       {/* Content */}
       <div className="flex-1 overflow-y-auto">
         <div className="max-w-3xl mx-auto px-6 py-6 space-y-6">
-          <h1 className="text-2xl font-bold text-zinc-100 leading-tight">{search.query}</h1>
+          <h1 className="text-2xl font-bold text-zinc-100 leading-tight">
+            {search.query}
+          </h1>
 
           <SourcesList sources={search.sources} />
           <AnswerPanel answer={search.answer} />
 
-          {(search.followUps?.length > 0 || followUpResults.length > 0) && (
+          {((search.followUps?.length ?? 0) > 0 ||
+            followUpResults.length > 0) && (
             <FollowUpSection
               suggestions={search.followUps ?? []}
               results={followUpResults}

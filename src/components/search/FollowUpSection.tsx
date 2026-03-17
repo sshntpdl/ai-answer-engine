@@ -1,11 +1,16 @@
-'use client';
-// src/components/search/FollowUpSection.tsx
+"use client";
 
-import { useState } from 'react';
-import { ChevronRight, MessageSquare, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
-import { AnswerPanel } from './AnswerPanel';
-import { cn } from '@/lib/utils';
-import type { FollowUpResult } from '@/types';
+import { useState } from "react";
+import {
+  ChevronRight,
+  MessageSquare,
+  Loader2,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
+import { AnswerPanel } from "./AnswerPanel";
+import { cn } from "@/lib/utils";
+import type { FollowUpResult } from "@/types";
 
 interface FollowUpSectionProps {
   suggestions: string[];
@@ -55,12 +60,12 @@ export function FollowUpSection({
                 onClick={() => handleAsk(q)}
                 disabled={!!asking || isLoading}
                 className={cn(
-                  'w-full flex items-center justify-between gap-3 px-4 py-3',
-                  'rounded-xl border border-zinc-800 bg-zinc-900/40',
-                  'text-left text-sm text-zinc-300 hover:text-zinc-100',
-                  'hover:bg-zinc-800/60 hover:border-zinc-700',
-                  'transition-all duration-200 group',
-                  'disabled:opacity-50 disabled:cursor-not-allowed'
+                  "w-full flex items-center justify-between gap-3 px-4 py-3",
+                  "rounded-xl border border-zinc-800 bg-zinc-900/40",
+                  "text-left text-sm text-zinc-300 hover:text-zinc-100",
+                  "hover:bg-zinc-800/60 hover:border-zinc-700",
+                  "transition-all duration-200 group",
+                  "disabled:opacity-50 disabled:cursor-not-allowed",
                 )}
               >
                 <span>{q}</span>
@@ -87,7 +92,9 @@ function FollowUpAnswer({ result }: { result: FollowUpResult }) {
         onClick={() => setExpanded((v) => !v)}
         className="w-full flex items-center justify-between gap-3 px-4 py-3 bg-zinc-900/60 hover:bg-zinc-800/60 transition-colors text-left"
       >
-        <span className="text-sm font-medium text-zinc-200">{result.question}</span>
+        <span className="text-sm font-medium text-zinc-200">
+          {result.question}
+        </span>
         {expanded ? (
           <ChevronUp className="shrink-0 w-4 h-4 text-zinc-500" />
         ) : (

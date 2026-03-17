@@ -1,7 +1,6 @@
-// src/app/search/[id]/page.tsx
-import { notFound } from 'next/navigation';
-import { searchRepository } from '@/lib/db/search.repository';
-import { SearchDetailClient } from './SearchDetailClient';
+import { notFound } from "next/navigation";
+import { searchRepository } from "@/lib/db/search.repository";
+import { SearchDetailClient } from "./SearchDetailClient";
 
 interface Props {
   params: Promise<{ id: string }>;

@@ -1,6 +1,5 @@
-// src/store/search.store.ts
-import { create } from 'zustand';
-import type { SearchResult, FollowUpResult, Source } from '@/types';
+import { create } from "zustand";
+import type { SearchResult, FollowUpResult, Source } from "@/types";
 
 interface SearchStore {
   // State
@@ -30,15 +29,15 @@ interface SearchStore {
 }
 
 const initialState = {
-  query: '',
+  query: "",
   isLoading: false,
   isStreaming: false,
-  streamedAnswer: '',
+  streamedAnswer: "",
   sources: [],
   followUps: [],
   currentSearch: null,
   followUpResults: [],
-  status: '',
+  status: "",
   error: null,
   searchId: null,
 };
@@ -78,8 +77,7 @@ export const useSearchStore = create<SearchStore>((set) => ({
   addFollowUpResult: (result) =>
     set((state) => ({ followUpResults: [...state.followUpResults, result] })),
 
-  setError: (error) =>
-    set({ error, isLoading: false, isStreaming: false }),
+  setError: (error) => set({ error, isLoading: false, isStreaming: false }),
 
   reset: () => set(initialState),
 }));

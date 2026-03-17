@@ -1,6 +1,5 @@
-// src/lib/db/search.repository.ts
-import { prisma } from './prisma';
-import type { Source } from '@/types';
+import { prisma } from "./prisma";
+import type { Source } from "@/types";
 
 export const searchRepository = {
   async create(query: string, answer: string, sources: Source[]) {
@@ -31,7 +30,7 @@ export const searchRepository = {
   async findHistory(limit = 20) {
     return prisma.search.findMany({
       select: { id: true, query: true, createdAt: true },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { createdAt: "desc" },
       take: limit,
     });
   },

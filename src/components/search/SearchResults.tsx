@@ -1,14 +1,10 @@
-'use client';
-// src/components/search/SearchResults.tsx
-
-import { useSearchStore } from '@/store/search.store';
-import { useSearch } from '@/hooks/useSearch';
-import { SearchBar } from './SearchBar';
-import { SourcesList } from './SourcesList';
-import { AnswerPanel } from './AnswerPanel';
-import { FollowUpSection } from './FollowUpSection';
-import { StatusBar } from './StatusBar';
-import { cn } from '@/lib/utils';
+"use client";
+import { useSearch } from "@/hooks/useSearch";
+import { SearchBar } from "./SearchBar";
+import { SourcesList } from "./SourcesList";
+import { AnswerPanel } from "./AnswerPanel";
+import { FollowUpSection } from "./FollowUpSection";
+import { StatusBar } from "./StatusBar";
 
 export function SearchResults() {
   const {
@@ -24,8 +20,6 @@ export function SearchResults() {
     search,
     askFollowUp,
   } = useSearch();
-
-  const hasContent = streamedAnswer || sources.length > 0;
 
   return (
     <div className="flex flex-col h-full">
@@ -74,13 +68,14 @@ export function SearchResults() {
           )}
 
           {/* Follow-ups */}
-          {!isStreaming && (followUps.length > 0 || followUpResults.length > 0) && (
-            <FollowUpSection
-              suggestions={followUps}
-              results={followUpResults}
-              onAsk={askFollowUp}
-            />
-          )}
+          {!isStreaming &&
+            (followUps.length > 0 || followUpResults.length > 0) && (
+              <FollowUpSection
+                suggestions={followUps}
+                results={followUpResults}
+                onAsk={askFollowUp}
+              />
+            )}
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
-// src/hooks/useHistory.ts
-import { useState, useEffect, useCallback } from 'react';
-import type { HistoryItem } from '@/types';
+import { useState, useEffect, useCallback } from "react";
+import type { HistoryItem } from "@/types";
 
 export function useHistory() {
   const [history, setHistory] = useState<HistoryItem[]>([]);
@@ -9,7 +8,7 @@ export function useHistory() {
   const fetchHistory = useCallback(async () => {
     setIsLoading(true);
     try {
-      const res = await fetch('/api/history');
+      const res = await fetch("/api/history");
       if (res.ok) {
         const data = await res.json();
         setHistory(data);
@@ -20,11 +19,13 @@ export function useHistory() {
   }, []);
 
   const deleteItem = useCallback(async (id: string) => {
-    await fetch(`/api/history/${id}`, { method: 'DELETE' });
+    await fetch(`/api/history/${id}`, { method: "DELETE" });
     setHistory((prev) => prev.filter((h) => h.id !== id));
   }, []);
 
-  useEffect(() => { fetchHistory(); }, [fetchHistory]);
+  useEffect(() => {
+    fetchHistory();
+  }, [fetchHistory]);
 
   return { history, isLoading, fetchHistory, deleteItem };
 }
